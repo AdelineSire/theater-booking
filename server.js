@@ -31,10 +31,11 @@ mongoose
 // Middlewares
 
 // Controllers
-const { play } = require('./controllers');
+const { play, show } = require('./controllers');
 
 // Routes
 app.use('/play', play);
+app.use('/show', show);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3002;

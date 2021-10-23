@@ -14,4 +14,9 @@ const getPlays = () => {
 	return axios.get(API_URL + 'play').then(resData);
 };
 
-export { createPlay, getPlays };
+// Show
+const createShow = (show) => {
+	return axios.post(API_URL + 'show', show).then(resData);
+};
+
+export { createPlay, getPlays, createShow };
