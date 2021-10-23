@@ -1,0 +1,16 @@
+.app {
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 100vh;
+	padding: 16px;
+	background-color: var(--bg);
+	font-family: var(--font);
+
+	h2 {
+		color: white;
+	}
+
+	h3 {
+		color: var(--accent);
+	}
+}
