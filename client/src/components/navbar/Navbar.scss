@@ -1,0 +1,17 @@
+.navbar {
+	display: flex;
+	width: 100%;
+	margin-bottom: 16px;
+	background-color: var(--accent);
+
+	a {
+		color: white;
+		text-decoration: none;
+		background-color: var(--accent);
+		padding: 28px;
+	}
+
+	.highlight {
+		background-color: var(--accent-light);
+	}
+}
