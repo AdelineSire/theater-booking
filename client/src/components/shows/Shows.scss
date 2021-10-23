@@ -1,0 +1,16 @@
+.shows {
+	display: flex;
+	.section {
+		background-color: var(--section);
+		width: 50%;
+		min-height: 90vh;
+		padding: 16px;
+	}
+
+	.section-left {
+		margin-right: 8px;
+	}
+	.section-right {
+		margin-left: 8px;
+	}
+}
