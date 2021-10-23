@@ -10,4 +10,8 @@ const createPlay = (play) => {
 	return axios.post(API_URL + 'play', play).then(resData);
 };
 
-export { createPlay };
+const getPlays = () => {
+	return axios.get(API_URL + 'play').then(resData);
+};
+
+export { createPlay, getPlays };

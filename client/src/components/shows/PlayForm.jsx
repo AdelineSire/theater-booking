@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { createPlay } from '../../services/api';
 import './PlayForm.scss';
 
-const PlayForm = () => {
+const PlayForm = ({ hide, reload }) => {
 	const { register, handleSubmit, reset } = useForm({
 		defaultValues: { title: '' },
 	});
@@ -11,6 +11,8 @@ const PlayForm = () => {
 	const onSubmitPlay = (data) => {
 		console.log('data in onSubmitPlay', data);
 		createPlay(data);
+		reload();
+		hide();
 		reset();
 	};
 

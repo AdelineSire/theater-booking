@@ -1,13 +1,13 @@
-import PlayForm from './PlayForm';
+import PlayInput from './PlayInput';
 
 import './Shows.scss';
 
 const Shows = () => {
 	return (
 		<div className='shows'>
-			<div className='section section-left'>Display Shows</div>
-			<div className='section section-right'>
-				<PlayForm />
+			<div className='section'>
+				<h3>Ajouter une représentation</h3>
+				<PlayInput />
 			</div>
 		</div>
 	);

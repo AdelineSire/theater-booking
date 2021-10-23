@@ -1,0 +1,28 @@
+.play-input {
+	display: flex;
+	align-items: flex-end;
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		margin-right: 4px;
+
+		select {
+			color: var(--accent);
+			border-color: var(--accent);
+			height: 28px;
+			padding: 4px;
+		}
+	}
+
+	.icon-button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: var(--accent);
+		color: white;
+		width: 28px;
+		height: 28px;
+		margin-left: 4px;
+	}
+}
