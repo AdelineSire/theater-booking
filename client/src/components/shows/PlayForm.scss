@@ -1,0 +1,29 @@
+.play-form {
+	background-color: var(--row);
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	padding: 8px;
+	margin-bottom: 4px;
+
+	.form-group {
+		flex-grow: 1;
+		padding-right: 8px;
+
+		input {
+			border: none;
+			width: 100%;
+			height: 32px;
+		}
+	}
+
+	button {
+		all: unset;
+		text-align: center;
+		background-color: var(--accent);
+		color: white;
+		height: 36px;
+		width: 116px;
+		margin-left: 4px;
+	}
+}
