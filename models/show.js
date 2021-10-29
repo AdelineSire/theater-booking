@@ -9,7 +9,7 @@ const showSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Theater',
 	},
-	date: Date,
+	date: String,
 	price1: Number,
 	price2: Number,
 });

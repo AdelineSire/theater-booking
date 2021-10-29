@@ -6,7 +6,6 @@ const { Show } = require('../models');
 const createShow = (req, res) => {
 	console.log('req.body: ', req.body);
 	const newShow = req.body;
-
 	const show = new Show({
 		play: newShow.play,
 		theater: newShow.theater,
@@ -23,5 +22,18 @@ const createShow = (req, res) => {
 		});
 };
 
+const readShows = (req, res) => {
+	Show.find({})
+		.then((shows) => {
+			console.log('shows in readShows', shows);
+			const showsSorted = shows.sort((a, b) => (a.date > b.date ? 1 : -1));
+			res.json(showsSorted);
+		})
+		.catch((err) => {
+			res.json(err);
+		});
+};
+
 router.route('/').post(createShow);
+router.route('/').get(readShows);
 module.exports = router;

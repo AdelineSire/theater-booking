@@ -29,4 +29,15 @@ const createShow = (show) => {
 	return axios.post(API_URL + 'show', show).then(resData);
 };
 
-export { createPlay, getPlays, createShow, createTheater, getTheaters };
+const getShows = () => {
+	return axios.get(API_URL + 'show').then(resData);
+};
+
+export {
+	createPlay,
+	getPlays,
+	createTheater,
+	getTheaters,
+	createShow,
+	getShows,
+};
