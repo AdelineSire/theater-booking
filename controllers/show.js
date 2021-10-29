@@ -9,6 +9,10 @@ const createShow = (req, res) => {
 
 	const show = new Show({
 		play: newShow.play,
+		theater: newShow.theater,
+		date: newShow.date,
+		price1: newShow.price1,
+		price2: newShow.price2,
 	});
 
 	show

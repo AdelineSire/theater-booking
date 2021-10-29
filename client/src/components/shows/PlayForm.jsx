@@ -17,7 +17,7 @@ const PlayForm = ({ hide, reload }) => {
 	};
 
 	return (
-		<form className='play-form' onSubmit={handleSubmit(onSubmitPlay)}>
+		<form className='row' onSubmit={handleSubmit(onSubmitPlay)}>
 			<div className='form-group'>
 				<label htmlFor='title'>Titre</label>
 				<input name='title' {...register('title')} />

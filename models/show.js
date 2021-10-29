@@ -5,6 +5,13 @@ const showSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Play',
 	},
+	theater: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Theater',
+	},
+	date: Date,
+	price1: Number,
+	price2: Number,
 });
 
 const Show = mongoose.model('Show', showSchema);

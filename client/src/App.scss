@@ -13,4 +13,76 @@
 	h3 {
 		color: var(--accent);
 	}
+
+	button {
+		all: unset;
+		text-align: center;
+		background-color: var(--accent);
+		color: white;
+		padding: 4px 8px;
+		margin-bottom: 8px;
+	}
+
+	.section {
+		background-color: var(--section);
+		min-height: 80vh;
+		padding: 4px 8px;
+	}
+
+	.section1 {
+		width: 50%;
+		margin-right: 4px;
+	}
+
+	.row {
+		font-size: 10px;
+		background-color: var(--row);
+		padding: 4px 4px 0 4px;
+		display: flex;
+		align-items: flex-end;
+		margin-bottom: 8px;
+		input {
+			height: 20px;
+			font-size: 10px;
+			margin-right: 4px;
+		}
+		button {
+			height: 18px;
+		}
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-bottom: 8px;
+		label {
+			color: var(--accent);
+		}
+		.input-group {
+			span {
+				margin-left: 4px;
+			}
+		}
+	}
+
+	.form-input {
+		display: flex;
+		align-items: flex-end;
+		select {
+			height: 26px;
+			margin-right: 4px;
+		}
+		.icon-button {
+			background-color: var(--accent);
+			color: white;
+			border-radius: 50%;
+			width: 26px;
+			height: 26px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-bottom: 8px;
+		}
+	}
 }
