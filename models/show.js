@@ -12,7 +12,7 @@ const showSchema = new mongoose.Schema({
 	date: String,
 	price1: Number,
 	price2: Number,
-	sits: [],
+	seats: [],
 });
 
 const Show = mongoose.model('Show', showSchema);

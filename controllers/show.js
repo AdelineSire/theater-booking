@@ -3,31 +3,33 @@ const router = express.Router();
 
 const { Show, Theater } = require('../models');
 
-const createSits = (row, col) => {
-	let sits = [];
-	for (let ir = 1; ir <= row; ir++) {
+const createSeats = (row, col) => {
+	let seats = [];
+	for (let ir = row; ir > 0; ir--) {
+		const chunck = [];
 		for (let ic = 65; ic <= col + 65; ic++) {
 			let letter = String.fromCharCode(ic);
-			sits.push({ id: `${ir}${letter}`, isBooked: false });
+			chunck.push({ id: `${ir}${letter}`, isBooked: false });
 		}
+		seats.push(chunck);
 	}
-	// console.log('sits: ', sits);
-	return sits;
+	// console.log('seats: ', seats);
+	return seats;
 };
 
 const createShow = async (req, res) => {
 	// console.log('req.body: ', req.body);
 	const newShow = req.body;
-	const sits = await Theater.findOne({ id: newShow.theater }).then(
+	const seats = await Theater.findOne({ id: newShow.theater }).then(
 		(theater) => {
-			return createSits(theater.row, theater.col);
+			return createSeats(theater.row, theater.col);
 		}
 	);
-	console.log('sits: ', sits);
+	console.log('seats: ', seats);
 	const show = new Show({
 		play: newShow.play,
 		theater: newShow.theater,
-		sits: sits,
+		seats: seats,
 		date: newShow.date,
 		price1: newShow.price1,
 		price2: newShow.price2,
@@ -65,7 +67,7 @@ const readShows = (req, res) => {
 						name: show.theater.name,
 						address: show.theater.address,
 					},
-					sits: show.sits,
+					seats: show.seats,
 					date: date,
 				};
 				return formatedShow;
