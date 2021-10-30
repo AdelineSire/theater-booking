@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import LaunchIcon from '@material-ui/icons/Launch';
+
 import { createShow, getShows } from '../../services/api';
 
 import PlayInput from './PlayInput';
@@ -88,7 +90,37 @@ const Shows = () => {
 					{shows.length === 0 ? (
 						<p>Aucune représentation</p>
 					) : (
-						shows.map((show) => <p key={show._id}>{show.date}</p>)
+						<div className='shows-list'>
+							<table>
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>Heure</th>
+										<th>Pièce</th>
+										<th>Salle</th>
+										<th>Tarif N</th>
+										<th>Tarif R</th>
+										<th>Nb places</th>
+									</tr>
+								</thead>
+								<tbody>
+									{shows.map((show) => (
+										<tr key={show._id}>
+											<td>{show.date.date}</td>
+											<td>{show.date.time}</td>
+											<td>{show.play}</td>
+											<td>{show.theater.name}</td>
+											<td>{show.price1}</td>
+											<td>{show.price2}</td>
+											<td>{show.sits.length}</td>
+											<td>
+												<LaunchIcon />
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</div>
 					)}
 				</div>
 			)}
