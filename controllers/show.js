@@ -1,14 +1,33 @@
 const express = require('express');
 const router = express.Router();
 
-const { Show } = require('../models');
+const { Show, Theater } = require('../models');
 
-const createShow = (req, res) => {
-	console.log('req.body: ', req.body);
+const createSits = (row, col) => {
+	let sits = [];
+	for (let ir = 1; ir <= row; ir++) {
+		for (let ic = 65; ic <= col + 65; ic++) {
+			let letter = String.fromCharCode(ic);
+			sits.push({ id: `${ir}${letter}`, isBooked: false });
+		}
+	}
+	// console.log('sits: ', sits);
+	return sits;
+};
+
+const createShow = async (req, res) => {
+	// console.log('req.body: ', req.body);
 	const newShow = req.body;
+	const sits = await Theater.findOne({ id: newShow.theater }).then(
+		(theater) => {
+			return createSits(theater.row, theater.col);
+		}
+	);
+	console.log('sits: ', sits);
 	const show = new Show({
 		play: newShow.play,
 		theater: newShow.theater,
+		sits: sits,
 		date: newShow.date,
 		price1: newShow.price1,
 		price2: newShow.price2,
@@ -22,12 +41,36 @@ const createShow = (req, res) => {
 		});
 };
 
+const transformDate = (date) => {
+	const year = date.slice(0, 4);
+	const month = date.slice(5, 7);
+	const day = date.slice(8, 10);
+	const time = date.slice(11, 16);
+	const formatedDate = `${day}-${month}-${year}`;
+	return { date: formatedDate, time: time };
+};
+
 const readShows = (req, res) => {
 	Show.find({})
+		.populate(['play', 'theater'])
 		.then((shows) => {
-			console.log('shows in readShows', shows);
-			const showsSorted = shows.sort((a, b) => (a.date > b.date ? 1 : -1));
-			res.json(showsSorted);
+			const result = shows.map((show) => {
+				const date = transformDate(show.date);
+				const formatedShow = {
+					_id: show._id,
+					price1: show.price1,
+					price2: show.price2,
+					play: show.play.title,
+					theater: {
+						name: show.theater.name,
+						address: show.theater.address,
+					},
+					sits: show.sits,
+					date: date,
+				};
+				return formatedShow;
+			});
+			res.json(result);
 		})
 		.catch((err) => {
 			res.json(err);
