@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Models
+const { Role } = require('./models');
 
 // BD connection
 const mongoose = require('mongoose');
@@ -22,21 +23,66 @@ mongoose
 	.connect(MONGODB_URI)
 	.then(() => {
 		console.log('Successfully connected to MongoDB.');
+		initial();
 	})
 	.catch((err) => {
 		console.error('Connection error', err);
 		process.exit();
 	});
 
+// Creates roles (spectator, seller, host, admin) in DB
+const initial = () => {
+	Role.estimatedDocumentCount((err, count) => {
+		if (!err && count === 0) {
+			new Role({
+				name: 'spectator',
+			}).save((err) => {
+				if (err) {
+					console.log('error', err);
+				}
+				console.log("added 'spectator' to roles collection");
+			});
+
+			new Role({
+				name: 'seller',
+			}).save((err) => {
+				if (err) {
+					console.log('error', err);
+				}
+				console.log("added 'seller' to roles collection");
+			});
+
+			new Role({
+				name: 'host',
+			}).save((err) => {
+				if (err) {
+					console.log('error', err);
+				}
+				console.log("added 'host' to roles collection");
+			});
+
+			new Role({
+				name: 'admin',
+			}).save((err) => {
+				if (err) {
+					console.log('error', err);
+				}
+				console.log("added 'admin' to roles collection");
+			});
+		}
+	});
+};
+
 // Middlewares
 
 // Controllers
-const { play, theater, show } = require('./controllers');
+const { play, theater, show, user } = require('./controllers');
 
 // Routes
 app.use('/play', play);
 app.use('/theater', theater);
 app.use('/show', show);
+app.use('/user', user);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 3002;

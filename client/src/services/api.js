@@ -33,6 +33,21 @@ const getShows = () => {
 	return axios.get(API_URL + 'show').then(resData);
 };
 
+// User
+const createUser = (user) => {
+	console.log('user in createUser', user);
+	return axios.post(API_URL + 'user', user).then(resData);
+};
+
+const getUsers = () => {
+	return axios.get(API_URL + 'user').then(resData);
+};
+
+const updateUser = (id, newValue) => {
+	console.log('newValue in updateUser', newValue);
+	return axios.put(API_URL + 'user/' + id, { newValue }).then(resData);
+};
+
 export {
 	createPlay,
 	getPlays,
@@ -40,4 +55,7 @@ export {
 	getTheaters,
 	createShow,
 	getShows,
+	createUser,
+	getUsers,
+	updateUser,
 };

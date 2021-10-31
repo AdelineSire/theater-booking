@@ -7,6 +7,7 @@ import { createShow, getShows } from '../../services/api';
 
 import PlayInput from './PlayInput';
 import TheaterInput from './TheaterInput';
+import Show from './Show';
 
 import './Shows.scss';
 
@@ -23,6 +24,7 @@ const Shows = () => {
 	});
 	const [shows, setShows] = useState(null);
 	const [isLoading, setIsLoading] = useState(true);
+	const [currentShow, setCurrentShow] = useState(null);
 
 	useEffect(() => {
 		getShows().then((response) => {
@@ -90,37 +92,39 @@ const Shows = () => {
 					{shows.length === 0 ? (
 						<p>Aucune représentation</p>
 					) : (
-						<div className='shows-list'>
-							<table>
-								<thead>
-									<tr>
-										<th>Date</th>
-										<th>Heure</th>
-										<th>Pièce</th>
-										<th>Salle</th>
-										<th>Tarif N</th>
-										<th>Tarif R</th>
-										<th>Nb places</th>
-									</tr>
-								</thead>
-								<tbody>
-									{shows.map((show) => (
-										<tr key={show._id}>
-											<td>{show.date.date}</td>
-											<td>{show.date.time}</td>
-											<td>{show.play}</td>
-											<td>{show.theater.name}</td>
-											<td>{show.price1}</td>
-											<td>{show.price2}</td>
-											<td>{show.sits.length}</td>
-											<td>
-												<LaunchIcon />
-											</td>
+						<>
+							<div className='shows-list'>
+								<table>
+									<thead>
+										<tr>
+											<th>Date</th>
+											<th>Heure</th>
+											<th>Pièce</th>
+											<th>Salle</th>
+											<th>Tarif N</th>
+											<th>Tarif R</th>
 										</tr>
-									))}
-								</tbody>
-							</table>
-						</div>
+									</thead>
+									<tbody>
+										{shows.map((show) => (
+											<tr key={show._id}>
+												<td>{show.date.date}</td>
+												<td>{show.date.time}</td>
+												<td>{show.play}</td>
+												<td>{show.theater.name}</td>
+												<td>{show.price1}</td>
+												<td>{show.price2}</td>
+												<td onClick={() => setCurrentShow(show)}>
+													<LaunchIcon />
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+							{/* {currentShow !== null ? <div>{currentShow._id}</div> : null} */}
+							{currentShow !== null ? <Show show={currentShow} /> : null}
+						</>
 					)}
 				</div>
 			)}

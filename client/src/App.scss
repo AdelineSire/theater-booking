@@ -50,6 +50,11 @@
 			font-size: 10px;
 			margin-right: 4px;
 		}
+		select {
+			height: 26px;
+			font-size: 10px;
+			margin-right: 4px;
+		}
 		button {
 			height: 18px;
 		}
@@ -88,5 +93,8 @@
 			align-items: center;
 			margin-bottom: 8px;
 		}
+	}
+	.free {
+		color: #8cd18c;
 	}
 }

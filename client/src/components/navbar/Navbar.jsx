@@ -11,6 +11,9 @@ const Navbar = () => {
 			<NavLink to='/shows' activeClassName='highlight'>
 				Représentations
 			</NavLink>
+			<NavLink to='/users' activeClassName='highlight'>
+				Utilisateurs
+			</NavLink>
 		</div>
 	);
 };

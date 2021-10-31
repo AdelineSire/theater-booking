@@ -27,9 +27,9 @@ const createTheater = (req, res) => {
 const readTheaters = (req, res) => {
 	Theater.find({})
 		.then((theaters) => {
-			const theatersSorted = theaters.sort((a, b) =>
-				a.date > b.date ? 1 : -1
-			);
+			const theatersSorted = theaters.sort((a, b) => {
+				a.created > b.created ? 1 : -1;
+			});
 			res.json(theatersSorted);
 		})
 		.catch((err) => {
