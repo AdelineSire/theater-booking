@@ -42,8 +42,9 @@ const readUsers = (req, res) => {
 };
 
 const updateUser = (req, res) => {
+	console.log('req.body in updateUser', req.body);
 	const userId = req.params.id;
-	const newValue = req.body;
+	const newValue = req.body.newValue;
 
 	User.updateOne({ _id: userId, $set: newValue })
 		.then((updatedUser) => {

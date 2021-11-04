@@ -47,7 +47,7 @@ const TheaterForm = ({ hide, reload }) => {
 					{...register('col')}
 				/>
 			</div>
-			<button type='sumbit'>Enregistrer</button>
+			<button type='submit'>Enregistrer</button>
 		</form>
 	);
 };

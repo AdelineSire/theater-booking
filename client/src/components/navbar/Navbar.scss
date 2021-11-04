@@ -1,8 +1,12 @@
 .navbar {
 	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	width: 100%;
 	margin-bottom: 16px;
 	background-color: var(--accent);
+	.sub-nav {
+	}
 
 	a {
 		color: white;

@@ -45,6 +45,7 @@ const getUsers = () => {
 
 const updateUser = (id, newValue) => {
 	console.log('newValue in updateUser', newValue);
+	console.log('id in updateUser', id);
 	return axios.put(API_URL + 'user/' + id, { newValue }).then(resData);
 };
 
