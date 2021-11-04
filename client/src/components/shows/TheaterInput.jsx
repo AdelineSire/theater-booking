@@ -16,7 +16,6 @@ const TheaterInput = ({ register }) => {
 
 	useEffect(() => {
 		getTheaters().then((response) => {
-			console.log('useEffect1');
 			setTheaters(response);
 		});
 	}, []);

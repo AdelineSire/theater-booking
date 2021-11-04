@@ -9,7 +9,6 @@ const TheaterForm = ({ hide, reload }) => {
 	});
 
 	const onSubmitTheater = (data) => {
-		console.log('data in onSubmitTheater', data);
 		createTheater(data);
 		reload();
 		hide();

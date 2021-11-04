@@ -14,7 +14,6 @@ const Users = () => {
 
 	useEffect(() => {
 		getUsers().then((response) => {
-			console.log('response in useEffect User', response);
 			setUsers(response);
 			setIsLoading(false);
 		});

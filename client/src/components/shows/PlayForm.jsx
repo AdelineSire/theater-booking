@@ -9,7 +9,6 @@ const PlayForm = ({ hide, reload }) => {
 	});
 
 	const onSubmitPlay = (data) => {
-		console.log('data in onSubmitPlay', data);
 		createPlay(data);
 		reload();
 		hide();

@@ -28,7 +28,6 @@ const Shows = () => {
 
 	useEffect(() => {
 		getShows().then((response) => {
-			console.log('response', response);
 			setShows(response);
 			setIsLoading(false);
 		});
@@ -122,7 +121,6 @@ const Shows = () => {
 									</tbody>
 								</table>
 							</div>
-							{/* {currentShow !== null ? <div>{currentShow._id}</div> : null} */}
 							{currentShow !== null ? <Show show={currentShow} /> : null}
 						</>
 					)}
