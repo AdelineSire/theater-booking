@@ -1,29 +1,9 @@
-import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-
-import { getCurrentUser, logout } from '../../services/auth-service';
 
 import './Navbar.scss';
 
-const Navbar = () => {
-	const [showSpectatorBoard, setShowSpectatorBoard] = useState(false);
-	const [showSellerBoard, setShowSellerBoard] = useState(false);
-	const [showHostBoard, setShowHostBoard] = useState(false);
-	const [showAdminBoard, setShowAdminBoard] = useState(false);
-	const [currentUser, setCurrentUser] = useState(undefined);
-
-	useEffect(() => {
-		const user = getCurrentUser();
-
-		if (user) {
-			console.log('user in navbar: ', user);
-			setCurrentUser(user);
-			setShowSpectatorBoard(user.roles.includes('spectator'));
-			setShowSellerBoard(user.roles.includes('seller'));
-			setShowHostBoard(user.roles.includes('host'));
-			setShowAdminBoard(user.roles.includes('admin'));
-		}
-	}, []);
+const Navbar = ({ user, onLogout }) => {
+	console.log('user in navbar', user);
 
 	return (
 		<div className='navbar'>
@@ -31,7 +11,7 @@ const Navbar = () => {
 				Logo
 			</NavLink>
 
-			{showAdminBoard && (
+			{user.role.name === 'admin' && (
 				<div className='sub-nav'>
 					<NavLink to='/shows' activeClassName='highlight'>
 						Représentations
@@ -42,12 +22,12 @@ const Navbar = () => {
 				</div>
 			)}
 
-			{currentUser ? (
+			{user ? (
 				<div className='user-nav'>
 					<NavLink to='/profile' activeClassName='highlight'>
-						Profil
+						{user.firstname}
 					</NavLink>
-					<NavLink to='/login' activeClassName='highlight' onClick={logout}>
+					<NavLink to='/login' activeClassName='highlight' onClick={onLogout}>
 						Déconnexion
 					</NavLink>
 				</div>

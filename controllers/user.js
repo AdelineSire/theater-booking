@@ -41,6 +41,20 @@ const readUsers = (req, res) => {
 		});
 };
 
+const readUser = (req, res) => {
+	console.log('req.body: ', req.body);
+	const id = req.params.id;
+	User.findOne({ _id: id })
+		.populate('role')
+		.then((user) => {
+			console.log('user in readUser: ', user);
+			res.json(user);
+		})
+		.catch((err) => {
+			res.json(err);
+		});
+};
+
 const updateUser = (req, res) => {
 	console.log('req.body in updateUser', req.body);
 	const userId = req.params.id;
@@ -55,5 +69,6 @@ const updateUser = (req, res) => {
 
 router.route('/').post(createUser);
 router.route('/').get(readUsers);
+router.route('/:id').get(readUser);
 router.route('/:id').put(updateUser);
 module.exports = router;

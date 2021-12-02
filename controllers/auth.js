@@ -19,19 +19,19 @@ exports.signup = (req, res) => {
 			return;
 		}
 
-		if (req.body.roles) {
+		if (req.body.role) {
 			Role.find(
 				{
-					name: { $in: req.body.roles },
+					name: req.body.role,
 				},
-				(err, roles) => {
+				(err, role) => {
 					if (err) {
 						res.status(500).send({ message: err });
 						return;
 					}
 
-					user.roles = roles.map((role) => role._id);
-					console.log('user.roles in signup: ', user.roles);
+					user.role = role._id;
+					console.log('user.roles in signup: ', user.role);
 					user.save((err) => {
 						if (err) {
 							res.status(500).send({ message: err });
@@ -49,8 +49,8 @@ exports.signup = (req, res) => {
 					return;
 				}
 
-				user.roles = [role._id];
-				console.log('user.roles 2 in signup: ', user.roles);
+				user.role = role._id;
+				console.log('user.roles 2 in signup: ', user.role);
 				user.save((err) => {
 					if (err) {
 						res.status(500).send({ message: err });
@@ -69,7 +69,7 @@ exports.signin = (req, res) => {
 	User.findOne({
 		email: req.body.email,
 	})
-		.populate('roles', '-__v')
+		.populate('role', '-__v')
 		.exec((err, user) => {
 			console.log('user in signin controller: ', user);
 			if (err) {
@@ -102,7 +102,7 @@ exports.signin = (req, res) => {
 				firstname: user.firstname,
 				lastname: user.lastname,
 				email: user.email,
-				roles: user.roles.name,
+				role: user.role.name,
 				accessToken: token,
 			});
 		});

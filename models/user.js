@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
 	email: String,
 	tel: String,
 	address: String,
-	roles: {
+	role: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Role',
 	},
