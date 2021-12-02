@@ -11,7 +11,7 @@ const Navbar = ({ user, onLogout }) => {
 				Logo
 			</NavLink>
 
-			{user.role.name === 'admin' && (
+			{user.role?.name === 'admin' && (
 				<div className='sub-nav'>
 					<NavLink to='/shows' activeClassName='highlight'>
 						Représentations
@@ -22,7 +22,7 @@ const Navbar = ({ user, onLogout }) => {
 				</div>
 			)}
 
-			{user ? (
+			{user._id ? (
 				<div className='user-nav'>
 					<NavLink to='/profile' activeClassName='highlight'>
 						{user.firstname}

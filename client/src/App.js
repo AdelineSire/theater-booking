@@ -21,6 +21,11 @@ function App() {
 	};
 
 	useEffect(() => {
+		// const user = getCurrentUser();
+		// if (user) {
+		// 	console.log('user in app', user);
+		// 	setCurrentUser(user);
+		// }
 		getCurrentUser().then((user) => setCurrentUser(user));
 	}, []);
 
@@ -46,7 +51,7 @@ function App() {
 						<Users />
 					</Route>
 					<Route exact path={'/profile'}>
-						<Profile />
+						<Profile user={currentUser} onLogout={onLogout} />
 					</Route>
 				</Switch>
 			</div>

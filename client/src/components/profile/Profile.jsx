@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { getCurrentUser, logout } from '../../services/auth-service';
 import { updateUser } from '../../services/api';
 
 const userSchema = yup.object().shape({
@@ -14,8 +13,7 @@ const userSchema = yup.object().shape({
 	tel: yup.string(),
 });
 
-const Profile = () => {
-	const currentUser = getCurrentUser();
+const Profile = ({ user, onLogout }) => {
 	const history = useHistory();
 	const [readOnly, setReadOnly] = useState(true);
 	const {
@@ -26,17 +24,17 @@ const Profile = () => {
 		mode: 'onBlur',
 		resolver: yupResolver(userSchema),
 		defaultValues: {
-			firstname: currentUser.firstname,
-			lastname: currentUser.lastname,
-			email: currentUser.email,
-			tel: currentUser.tel,
+			firstname: user.firstname,
+			lastname: user.lastname,
+			email: user.email,
+			tel: user.tel,
 		},
 	});
 
 	const onSubmitUser = (data) => {
-		const id = currentUser._id;
+		const id = user._id;
 		updateUser(id, data);
-		logout();
+		onLogout();
 		history.push('/');
 	};
 

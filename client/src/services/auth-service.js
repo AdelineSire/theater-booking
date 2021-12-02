@@ -27,8 +27,6 @@ const getCurrentUser = () => {
 			console.log('response.data', response.data);
 			return response.data;
 		});
-	} else {
-		return {};
 	}
 };
 
