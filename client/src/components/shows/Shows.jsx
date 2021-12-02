@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-import LaunchIcon from '@material-ui/icons/Launch';
-
 import { createShow, getShows } from '../../services/api';
 
 import PlayInput from './PlayInput';
 import TheaterInput from './TheaterInput';
 import Show from './Show';
+import ShowsList from './ShowsList';
 
 import './Shows.scss';
 
@@ -87,41 +86,26 @@ const Shows = () => {
 				<p>Chargement</p>
 			) : (
 				<div className='section section2'>
-					<h3>Prochaines représentations</h3>
 					{shows.length === 0 ? (
 						<p>Aucune représentation</p>
 					) : (
 						<>
-							<div className='shows-list'>
-								<table>
-									<thead>
-										<tr>
-											<th>Date</th>
-											<th>Heure</th>
-											<th>Pièce</th>
-											<th>Salle</th>
-											<th>Tarif N</th>
-											<th>Tarif R</th>
-										</tr>
-									</thead>
-									<tbody>
-										{shows.map((show) => (
-											<tr key={show._id}>
-												<td>{show.date.date}</td>
-												<td>{show.date.time}</td>
-												<td>{show.play}</td>
-												<td>{show.theater.name}</td>
-												<td>{show.price1}</td>
-												<td>{show.price2}</td>
-												<td onClick={() => setCurrentShow(show)}>
-													<LaunchIcon />
-												</td>
-											</tr>
-										))}
-									</tbody>
-								</table>
-							</div>
-							{currentShow !== null ? <Show show={currentShow} /> : null}
+							{currentShow !== null ? (
+								<>
+									<button onClick={() => setCurrentShow(null)}>
+										Retour à la liste
+									</button>
+									<Show show={currentShow} />
+								</>
+							) : (
+								<ShowsList
+									shows={shows}
+									openShow={(show) => {
+										console.log(show);
+										setCurrentShow(show);
+									}}
+								/>
+							)}
 						</>
 					)}
 				</div>

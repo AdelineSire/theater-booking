@@ -8,7 +8,7 @@ const Show = ({ show }) => {
 		<div>
 			<div className='infos'></div>
 			<div className='seats'>
-				{show.seats.map((seatsRow) => (
+				{show.seats?.map((seatsRow) => (
 					<div key={uuidv4()} className='seats-row'>
 						{seatsRow.map((seat) => (
 							<div

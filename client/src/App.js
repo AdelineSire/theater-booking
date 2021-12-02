@@ -17,7 +17,7 @@ function App() {
 	const [currentUser, setCurrentUser] = useState({});
 	const onLogout = () => {
 		logout();
-		setCurrentUser();
+		setCurrentUser({});
 	};
 
 	useEffect(() => {
