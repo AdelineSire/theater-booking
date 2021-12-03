@@ -1,21 +1,20 @@
 import { v4 as uuidv4 } from 'uuid';
 import WeekendIcon from '@material-ui/icons/Weekend';
 
-import './Show.scss';
+import './Seats.scss';
 
-const Show = ({ show }) => {
+const Seats = ({ show }) => {
+	console.log('show in seats', show);
 	return (
-		<div>
-			<div className='infos'></div>
+		<div className='section'>
 			<div className='seats'>
 				{show.seats?.map((seatsRow) => (
 					<div key={uuidv4()} className='seats-row'>
 						{seatsRow.map((seat) => (
-							<div
-								key={seat.id}
-								className={seat.isBooked ? 'seat-group' : 'seat-group free'}
-							>
-								<WeekendIcon />
+							<div key={seat.id} className='seat-group'>
+								<div className={seat.isBooked ? 'booked' : 'free'}>
+									<WeekendIcon />
+								</div>
 								{seat.id}
 							</div>
 						))}
@@ -26,4 +25,4 @@ const Show = ({ show }) => {
 	);
 };
 
-export default Show;
+export default Seats;

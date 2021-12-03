@@ -11,6 +11,13 @@
 			align-items: center;
 			font-size: 0.6em;
 			margin: 4px;
+			color: black;
+			.free {
+				color: #8cd18c;
+			}
+			.booked {
+				color: var(--accent);
+			}
 			svg {
 				width: 32px;
 				height: 32px;
