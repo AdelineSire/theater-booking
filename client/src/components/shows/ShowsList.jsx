@@ -1,6 +1,14 @@
+import { useHistory } from 'react-router-dom';
+
 import LaunchIcon from '@material-ui/icons/Launch';
 
-const ShowsList = ({ shows, openShow }) => {
+const ShowsList = ({ shows }) => {
+	console.log('shows in showlist', shows);
+	const history = useHistory();
+	const openShow = (show) => {
+		history.push(`/booking/${show._id}`);
+	};
+
 	return (
 		<div className='section section2'>
 			<h3>Prochaines représentations</h3>
