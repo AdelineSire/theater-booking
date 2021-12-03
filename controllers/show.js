@@ -79,6 +79,34 @@ const readShows = (req, res) => {
 		});
 };
 
+const readShow = (req, res) => {
+	const id = req.params.id;
+	console.log('req.params.id in readShow : ', id);
+	Show.findOne({ _id: id })
+		.populate(['play', 'theater'])
+		.then((show) => {
+			const date = transformDate(show.date);
+			const formatedShow = {
+				_id: show._id,
+				price1: show.price1,
+				price2: show.price2,
+				play: show.play.title,
+				theater: {
+					name: show.theater.name,
+					address: show.theater.address,
+				},
+				seats: show.seats,
+				date: date,
+			};
+			console.log('formatedShow', formatedShow);
+			res.json(formatedShow);
+		})
+		.catch((err) => {
+			res.json(err);
+		});
+};
+
 router.route('/').post(createShow);
 router.route('/').get(readShows);
+router.route('/:id').get(readShow);
 module.exports = router;
