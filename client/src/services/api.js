@@ -33,6 +33,10 @@ const getShows = () => {
 	return axios.get(API_URL + 'show').then(resData);
 };
 
+const getShow = (id) => {
+	return axios.get(API_URL + 'show/' + id).then(resData);
+};
+
 // User
 const createUser = (user) => {
 	console.log('user in createUser', user);
@@ -56,6 +60,7 @@ export {
 	getTheaters,
 	createShow,
 	getShows,
+	getShow,
 	createUser,
 	getUsers,
 	updateUser,
