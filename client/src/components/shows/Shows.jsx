@@ -5,7 +5,7 @@ import { createShow, getShows } from '../../services/api';
 
 import PlayInput from './PlayInput';
 import TheaterInput from './TheaterInput';
-import Show from './Show';
+import Show from './Seats';
 import ShowsList from './ShowsList';
 
 import './Shows.scss';
