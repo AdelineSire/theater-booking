@@ -3,8 +3,6 @@ import { NavLink } from 'react-router-dom';
 import './Navbar.scss';
 
 const Navbar = ({ user, onLogout }) => {
-	console.log('user in navbar', user);
-
 	return (
 		<div className='navbar'>
 			<NavLink to='/home' activeClassName='highlight'>

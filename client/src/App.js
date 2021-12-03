@@ -21,11 +21,6 @@ function App() {
 	};
 
 	useEffect(() => {
-		// const user = getCurrentUser();
-		// if (user) {
-		// 	console.log('user in app', user);
-		// 	setCurrentUser(user);
-		// }
 		getCurrentUser().then((user) => setCurrentUser(user));
 	}, []);
 
@@ -36,7 +31,7 @@ function App() {
 
 				<Switch>
 					<Route exact path={['/', '/home']}>
-						<Home />
+						<Home currentUser={currentUser} />
 					</Route>
 					<Route exact path={'/signup'}>
 						<SignupForm />

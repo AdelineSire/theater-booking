@@ -23,11 +23,15 @@ const logout = () => {
 const getCurrentUser = () => {
 	const user = JSON.parse(localStorage.getItem('user'));
 	if (user) {
-		return axios.get(API_URL + 'user/' + user._id).then((response) => {
-			console.log('response.data', response.data);
-			return response.data;
-		});
-	}
+		return axios
+			.get(API_URL + 'user/' + user._id)
+			.then((response) => {
+				return response.data;
+			})
+			.catch((err) => {
+				console.log('err', err);
+			});
+	} else return new Promise((resolve) => resolve({}));
 };
 
 export { signup, login, logout, getCurrentUser };
